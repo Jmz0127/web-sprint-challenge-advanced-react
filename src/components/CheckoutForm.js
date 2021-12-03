@@ -23,6 +23,8 @@ const CheckoutForm = () => {
 		setShowSuccessMessage(true);
 	};
 
+	//kept handleSubmit here as it is not stateful logic, moved handleChanges to custom hook as it is stateful logic
+
 	return (
 		<>
 			<form onSubmit={handleSubmit}>

@@ -11,8 +11,10 @@ test('renders without errors', () => {
 });
 
 test('shows success message on submit with form details', async () => {
+	//Arrange: render the component
 	render(<CheckoutForm />);
 
+	//Act: set up variables for all items on form
 	const firstNameField = screen.getByLabelText(/First Name:/i);
 	const lastNameField = screen.getByLabelText(/Last Name:/i);
 	const addressField = screen.getByLabelText(/Address:/i);
@@ -21,6 +23,7 @@ test('shows success message on submit with form details', async () => {
 	const zipField = screen.getByLabelText(/Zip:/i);
 	const submitButton = screen.getByRole('button');
 
+	//Act: user events to populate the form and click submit
 	userEvent.type(firstNameField, 'Jooonny');
 	userEvent.type(lastNameField, 'Ive');
 	userEvent.type(addressField, '66 road');
@@ -30,6 +33,7 @@ test('shows success message on submit with form details', async () => {
 
 	userEvent.click(submitButton);
 
+	//Assert: using await to find the success message and expect it to be in the document
 	const successMessage = await screen.findByText(/You have ordered some plants! Woo-hoo!/i);
 	expect(successMessage).toBeInTheDocument();
 });
