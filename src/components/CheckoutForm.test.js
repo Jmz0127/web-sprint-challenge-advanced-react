@@ -19,6 +19,7 @@ test('shows success message on submit with form details', async () => {
 	const cityField = screen.getByLabelText(/City:/i);
 	const stateField = screen.getByLabelText(/State:/i);
 	const zipField = screen.getByLabelText(/Zip:/i);
+	const submitButton = screen.getByRole('button');
 
 	userEvent.type(firstNameField, 'Jooonny');
 	userEvent.type(lastNameField, 'Ive');
@@ -27,7 +28,6 @@ test('shows success message on submit with form details', async () => {
 	userEvent.type(stateField, 'NC');
 	userEvent.type(zipField, '28213');
 
-	const submitButton = screen.getByRole('button');
 	userEvent.click(submitButton);
 
 	const successMessage = await screen.findByText(/You have ordered some plants! Woo-hoo!/i);
